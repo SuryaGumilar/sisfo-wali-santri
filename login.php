@@ -1,39 +1,58 @@
-<?php
-session_start();
-require 'functions.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sistem Informasi Wali Santri</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="login-card">
+            <img src="images/logo.png" alt="Logo Aplikasi" class="logo">
+            <!-- <h2>Login</h2> -->
+            <hr>
+            <form method="post" action="backend/login-logic.php">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" id="togglePassword">🙈</button>
+                    </div>
+                </div>
+                <?php
+                    session_start();
+                    // Tampilkan pesan dari session jika ada
+                    if (isset($_SESSION['error'])) {
+                        echo '<p style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</p><br>';
+                        unset($_SESSION['error']); // Hapus pesan setelah ditampilkan
+                    }
+                ?>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+    </div>
+    
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Ambil data dari form
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = $_POST['password'];
+    <script>
+        // JavaScript untuk toggle show/hide password
+        const passwordField = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
 
-    // Query untuk mencari user berdasarkan username
-    $query = "SELECT * FROM users WHERE NIS = '$username'";
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        // Verifikasi password (menggunakan hash)
-        if (password_verify($password, $user['password'])) {
-            // Set session jika login sukses
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-
-            // Redirect berdasarkan role
-            if ($user['role'] === 'pengurus') {
-                header('Location: dashboard-pengurus.html');
-            } elseif ($user['role'] === 'bendahara') {
-                header('Location: dashboard-bendahara.html');
+        togglePassword.addEventListener("click", function () {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePassword.textContent = "👁️"; // Mengubah ikon ketika password terlihat
             } else {
-                header('Location: dashboard-wali.html');
+                passwordField.type = "password";
+                togglePassword.textContent = "🙈";
             }
-            exit();
-        } else {
-            $error = "Password salah!";
-        }
-    } else {
-        $error = "Username tidak ditemukan!";
-    }
-}
-
-?>
+        });
+    </script>
+</body>
+</html>

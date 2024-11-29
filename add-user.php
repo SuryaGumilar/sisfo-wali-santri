@@ -1,50 +1,31 @@
 <?php
-require 'vendor/autoload.php';  // Autoload untuk PhpSpreadsheet
+include 'includes/auth.php';
 
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
+checkRole(['pengurus']);
+?>
 
-$host = 'localhost';
-$db = 'sisfo_wali_santri';
-$user = 'root';
-$pass = '';
-
-// Koneksi ke database
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
-}
-
-if ($_FILES['file']['name']) {
-    $fileName = $_FILES['file']['tmp_name'];
-    $spreadsheet = IOFactory::load($fileName);
-    $sheet = $spreadsheet->getActiveSheet();
-    $rows = $sheet->toArray();
-
-    $query = "INSERT INTO users (NIS, password, role, is_active) VALUES (:NIS, :password, 'siswa', true)";
-    $stmt = $pdo->prepare($query);
-
-    // Iterasi setiap baris di file Excel, mulai dari baris kedua (untuk melewati header)
-    for ($i = 1; $i < count($rows); $i++) {
-        $NIS = $rows[$i][0];       // Kolom pertama: NIS atau username
-        $plainPassword = $rows[$i][1];  // Kolom kedua: password plaintext
-
-        // Hash password
-        $hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
-
-        // Eksekusi query untuk menyimpan ke database
-        try {
-            $stmt->execute([
-                ':NIS' => $NIS,
-                ':password' => $hashedPassword
-            ]);
-            echo "Pengguna dengan NIS $NIS berhasil diimport.<br>";
-        } catch (PDOException $e) {
-            echo "Error saat menyimpan pengguna $NIS: " . $e->getMessage() . "<br>";
-        }
-    }
-} else {
-    echo "File tidak ditemukan.";
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Pengguna</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="add-user-card">
+            <h2>Upload File Excel</h2>
+            <p>Pilih file Excel yang ingin diunggah untuk menambahkan data pengguna.</p>
+            <form action="add-user.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Pilih File Excel (.xls, .xlsx):</label>
+                    <input type="file" id="file" name="file" accept=".xls,.xlsx" required>
+                </div>
+                <button type="submit" class="btn-submit">Unggah File</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
