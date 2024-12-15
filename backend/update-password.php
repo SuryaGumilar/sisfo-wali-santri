@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validasi password
     if ($password !== $confirmPassword) {
-        die("Password dan konfirmasi password tidak cocok!");
+        header("Location: ../profile.php?message=Password%20dan%20konfirmasi%20tidak%20cocok");
+        exit;
     }
 
     // Hash password baru
@@ -22,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ss", $hashedPassword, $username);
 
     if ($stmt->execute()) {
-        echo "Password berhasil diubah!";
+        header("Location: ../profile.php?message=Password%20berhasil%20diubah!");
     } else {
-        echo "Terjadi kesalahan: " . $conn->error;
+        header("Location: ../profile.php?message=Terjadi%20kesalahan:%20" . urlencode($conn->error));
     }
 
     $stmt->close();
+    $conn->close();
+    exit;
 }
-
-$conn->close();
 ?>
