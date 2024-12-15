@@ -33,7 +33,7 @@
                         unset($_SESSION['error']); // Hapus pesan setelah ditampilkan
                     }
                 ?>
-                <button type="submit" class="login-button">Login</button>
+                <button type="submit" class="blue-button">Login</button>
             </form>
         </div>
     </div>

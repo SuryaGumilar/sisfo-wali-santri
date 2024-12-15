@@ -5,6 +5,10 @@
     font-family: Arial, sans-serif;
 }
 
+.greet {
+    margin: 50px;
+}
+
 .main-container {
     display: flex;
     justify-content: center;
@@ -14,10 +18,10 @@
 }
 
 .login-card {
-    width: 100%;
-    max-width: 400px;
+    /* width: 100%; */
+    width: 400px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -72,7 +76,7 @@ input[type="password"]:focus {
     font-size: 16px;
 }
 
-.login-button {
+.blue-button {
     width: 100%;
     padding: 10px;
     background-color: #3b82f6;
@@ -84,7 +88,7 @@ input[type="password"]:focus {
     transition: background-color 0.2s;
 }
 
-.login-button:hover {
+.blue-button:hover {
     background-color: #2563eb;
 }
 
@@ -146,3 +150,143 @@ input[type="password"]:focus {
     background-color: #218838;
 }
 
+/* Style for dashboard-wali   */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ececec;
+  }
+
+  .goToDashboard {
+    width: 40px;
+  }
+  
+  .navbar-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .dropdown {
+    display: inline-block;
+  }
+  
+  .dropdown-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .dropdown-button .navbar-icon {
+    margin-right: 8px;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-description {
+    padding: 20px;
+    flex: 4;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .card-link {
+    padding: 10px;
+    text-align: center;
+    background-color: #ececec;
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+    flex: 1;
+  }
+  
+  .card-link:hover {
+    background-color: #01d837;
+  }
+
+/* Style for Profile Page */
+  .profile-box {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+  }
+
+  .profile-box h2 {
+    text-align: center;
+  }
+
+  .profile-box p {
+    margin: 50px 0;
+    padding-left: 2px;
+  }
+  
+/* Responsiveness */
+@media (max-width: 768px) {
+  .login-card {
+    width: 80%;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
