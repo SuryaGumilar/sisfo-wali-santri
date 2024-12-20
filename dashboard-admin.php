@@ -1,11 +1,11 @@
 <?php
 
-$title = "Dashboard Pengurus";
+$title = "Dashboard Admin";
 require 'includes/header.php';
 
-checkRole(['pengurus']);
+checkRole(['admin']);
 
 ?>
 <h1 class="greet">Selamat datang <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
-
+    
 <?php include 'includes/footer.php'; ?>

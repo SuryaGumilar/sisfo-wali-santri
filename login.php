@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="login-card">
+    <div class="login-container">
+        <div class="common-box">
             <img src="images/logo.png" alt="Logo Aplikasi" class="logo">
             <!-- <h2>Login</h2> -->
             <hr>

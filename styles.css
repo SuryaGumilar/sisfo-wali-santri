@@ -9,12 +9,11 @@
     margin: 50px;
 }
 
-.main-container {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f2f5;
 }
 
 .login-card {
@@ -30,6 +29,9 @@
 .logo {
     width: 80px;
     margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 hr {
@@ -93,28 +95,6 @@ input[type="password"]:focus {
 }
 
 /* Style for add-user */
-.add-user-card {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-}
-
-.add-user-card h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #007bff;
-}
-
-.add-user-card p {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #555;
-}
-
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -133,21 +113,6 @@ input[type="password"]:focus {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-}
-
-.btn-submit {
-    padding: 12px 30px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-submit:hover {
-    background-color: #218838;
 }
 
 /* Style for dashboard-wali   */
@@ -257,8 +222,8 @@ body {
   }
 
 /* Style for Profile Page */
-  .profile-box {
-    max-width: 400px;
+  .common-box {
+    width: 400px;
     margin: 50px auto;
     padding: 20px;
     background: #fff; 
@@ -266,18 +231,18 @@ body {
     border-radius: 8px; 
   }
 
-  .profile-box h2 {
+  .common-box h2 {
     text-align: center;
   }
 
-  .profile-box p {
+  .common-box p {
     margin: 50px 0;
     padding-left: 2px;
   }
   
 /* Responsiveness */
 @media (max-width: 768px) {
-  .login-card {
+  .common-box {
     width: 80%;
   }
 

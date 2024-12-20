@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Akses Ditolak</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
 </head>
 <body>
     <h1>Akses Ditolak</h1>

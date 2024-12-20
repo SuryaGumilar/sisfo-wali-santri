@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['role'] = $user['role'];
 
             // Redirect berdasarkan role
-            if ($user['role'] === 'pengurus') {
+            if ($user['role'] === 'admin') {
+                header('Location: ../dashboard-admin.php');
+            } elseif ($user['role'] === 'pengurus') {
                 header('Location: ../dashboard-pengurus.php');
             } elseif ($user['role'] === 'bendahara') {
                 header('Location: ../dashboard-bendahara.php');
