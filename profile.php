@@ -4,6 +4,7 @@ $title = "Informasi Login";
 require 'includes/header.php';
 
 ?>
+<main>
 <div class="common-box">
     <h2>Informasi Login</h2>
     <p>Nama: <?php echo htmlspecialchars($_SESSION['username']); ?></p>
@@ -24,4 +25,5 @@ require 'includes/header.php';
         <?php endif; ?>
     </form>
 </div>
+</main>
 <?php include 'includes/footer.php'; ?>

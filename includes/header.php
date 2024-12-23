@@ -27,7 +27,8 @@ include 'includes/auth.php';
                     <a href="profile.php">Profil</a>
                     <?php
                         if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-                            echo '<a href="add-user.php">Tambah User</a>';
+                            echo '<a href="manage-staf.php">Kelola Data Staf</a>';
+                            echo '<a href="manage-wali-santri.php">Kelola Data Wali Santri</a>';
                     }
                     ?>
                     <a href="logout.php">Logout</a>
