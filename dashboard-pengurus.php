@@ -13,7 +13,7 @@ $row = $result->fetch_assoc();
 $tingkatSaatIni = strval($row['tingkat']);
 
 $query = "
-    SELECT wali.username, wali.nama, wali.tempatLahir, wali.tglLahir, absensi.status 
+    SELECT wali.username, wali.nama, wali.tempatLahir, wali.tglLahir, absensi.status, absensi.tanggal 
     FROM wali 
     LEFT JOIN absensi ON wali.username = absensi.username
     WHERE wali.pengurus = '{$_SESSION['username']}'

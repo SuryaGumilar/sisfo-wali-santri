@@ -21,6 +21,19 @@ while ($row = $data_wali->fetch_assoc()){
         $capaianHariIni = 'Belum ada capaian';
     }
 }
+
+$data_absen = $conn->query("
+    SELECT status, tanggal
+    FROM absensi WHERE username = '{$_SESSION['username']}'
+");
+
+while ($row = $data_absen->fetch_assoc()){
+    if ($row['tanggal'] == date('Y-m-d')) {
+        $absenHariIni = $row['status'];
+    } else {
+        $absenHariIni = 'Belum diabsen';
+    }
+}
     
 
 
@@ -34,8 +47,9 @@ while ($row = $data_wali->fetch_assoc()){
         <a href="#riwayat1" class="card-link">MENU SPP</a>
         </div>
         <div class="card">
-        <div class="card-description">ABSENSI HARI INI: {status absensi}</div>
-        <a href="#riwayat2" class="card-link">LIHAT RIWAYAT ABSENSI</a>
+        <div class="card-description">ABSENSI HARI INI:<br>
+        <?php echo htmlspecialchars($absenHariIni); ?></div>
+        <a href="riwayat-absensi.php" class="card-link">LIHAT RIWAYAT ABSENSI</a>
         </div>
         <div class="card">
         <div class="card-description">CAPAIAN HARI INI:<br>
