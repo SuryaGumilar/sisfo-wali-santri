@@ -34,6 +34,19 @@ while ($row = $data_absen->fetch_assoc()){
         $absenHariIni = 'Belum diabsen';
     }
 }
+
+$data_spp = $conn->query("SELECT * FROM pembayaran_spp WHERE username = '{$_SESSION['username']}'");
+
+
+while ($row = $data_spp->fetch_assoc()){
+    if ($row['bulan'] === date('m')) {
+        $statusBayar = strval($row['status']);
+    } else {
+        $statusBayar = 'Belum Dibayar';
+    }
+}
+
+
     
 
 
@@ -43,8 +56,9 @@ while ($row = $data_absen->fetch_assoc()){
     <h3 class="greet">Selamat datang wali <?php echo htmlspecialchars($nama['nama']); ?></h3>
     <main class="content">
         <div class="card"> 
-        <div class="card-description">SPP BULAN INI SUDAH DIBAYAR</div>
-        <a href="#riwayat1" class="card-link">MENU SPP</a>
+        <div class="card-description">SPP BULAN INI:<br>
+        <?php echo htmlspecialchars($statusBayar); ?></div>
+        <a href="pembayaran-spp.php" class="card-link">MENU SPP</a>
         </div>
         <div class="card">
         <div class="card-description">ABSENSI HARI INI:<br>
